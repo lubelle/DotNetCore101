@@ -11,6 +11,8 @@
 	-project file:no need to unload .csproj first in order to edit it;project files are in sync with file system 
 	-AspNetCoreHostingModel:InProcess or OutOfProcess;InProcess hosts the app inside of the IIS worker process(w3wp.exe);OutOfProcess(default) hosting model forward web requests to a backend ASP.NET Core app running the Kestrel server
 	-configurations sources in asp.net core:Files(appsettings.json,appsettings.{Environment}.json),User secrets,Environment variables,Command-line arguments
+	-use of UseDeveloperExceptionPage middleware:plugged in as early as possible;contains stack trace,query string,cookied and http headers;use DeveloperExceptionPageOptions object to customize
+	
 ##ASP.NET Core MVC
 ##ASP.NET Core Identity
 ##Entity Framework Core
