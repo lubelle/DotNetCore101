@@ -17,6 +17,13 @@ namespace EmployeeManagement
             CreateWebHostBuilder(args).Build().Run();
         }
 
+        // CreateDefaultBuilder() performs setting up the web server,
+        // loading the host and application configurations,
+        // configuring logging
+        // <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+        // CreateDefaultBuilder() method calls UseIIS() method and host the app
+        // inside of the IIS worker process (w3wp.exe or iisexpress.exe)
+        // InProcess hosting delivers significantly higher request throughput than OutOfProcess hosting
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
