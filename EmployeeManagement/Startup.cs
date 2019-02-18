@@ -23,42 +23,25 @@ namespace EmployeeManagement
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
-            ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames.Clear();
-            defaultFilesOptions.DefaultFileNames.Add("foo.html");
-            app.UseDefaultFiles(defaultFilesOptions);
+             
             app.UseStaticFiles();
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("mw1: incoming req");
-                await next();
-                logger.LogInformation("mw1: outgoing res");
 
-            });
+            app.UseMvcWithDefaultRoute();
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("mw2: incoming req");
-                await next();
-                logger.LogInformation("mw2: outgoing res");
-
-            });
-
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("md3: request handled and response produced");
-                logger.LogInformation("md3: request handled and response produced");
-            });
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello!");
+            //});
         }
     }
 }
